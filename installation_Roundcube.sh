@@ -47,7 +47,7 @@ chown -R www-data. /var/www/html/webmail/config/config.inc.php
 cp $HOME/*.sql /tmp
 
 echo -e " ${RED}commandes à passer : ${NC}" 
-echo "psql -U postgres -f /tmp/Roundcube_init_base.sql"
+echo -e "${GREEN}psql -U postgres -f /tmp/Roundcube_init_base.sql"
 echo "psql -d roundcube -U postgres -f /tmp/roundcube.initial.sql" 
-echo "et rajouter les droit 'alter role roundcube superuser;' " 
+echo -e "et rajouter les droit 'alter role roundcube superuser;' ${NC} " 
 
