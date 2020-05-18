@@ -28,6 +28,8 @@ ${GREEN}####### installation OBM ######${NC}
 40 : Installation OBM
 ${GREEN}####### installation Roundcube ######${NC}
 50 : Installation Roundcube
+${GREEN}####### installation Saberdav ######${NC}
+60 : Installation  Saberdav
 
 100 : quit 
 "
@@ -67,6 +69,10 @@ case $menu in
 
         50 ) ### Installation Roudncube
                 ./installation_Roundcube.sh
+        ;;
+
+	60 ) ### Installation Roudncube
+                ./installation_sabredav.sh
         ;;
 
 

@@ -18,5 +18,6 @@ mv SabreDAVMel_0.6.7_ORM_0.5.0.12_20191014140152.tar.gz SabreDAVmel.tar.gz
 cd $WEBFOLDER
 tar -xvf $HOME/SabreDAVmel.tar.gz
 
-
+mkdir  /var/log/sabredav
+chown www-data. /var/log/sabredav
 
