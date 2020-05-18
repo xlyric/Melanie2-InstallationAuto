@@ -28,7 +28,7 @@ fi
 apt-get install -y php5-pgsql php5-dom  
 apt-get install -y php-dom php-pgsql
 
-#wget  https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.7.4/Roundcube_Mel_1.4.7.4_ORM_0.5.0.11_20190711115552.tar.gz  
+wget  https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.7.4/Roundcube_Mel_1.4.7.4_ORM_0.5.0.11_20190711115552.tar.gz  
 mv Roundcube_Mel_1.4.7.4_ORM_0.5.0.11_20190711115552.tar.gz Roundcubemel.tar.gz
 
 cd $WEBFOLDER
@@ -43,6 +43,8 @@ cp  $WEBFOLDER//webmail/vendor/messagerie-melanie2/ORM-M2/config/default/* /etc/
 
 cp  $HOME/config.inc.roundcube /var/www/html/webmail/config/config.inc.php
 chown -R www-data. /var/www/html/webmail/config/config.inc.php 
+
+cp $HOME/*.sql /tmp
 
 echo -e " ${RED}commandes à passer : ${NC}" 
 echo "psql -U postgres -f /tmp/Roundcube_init_base.sql"
