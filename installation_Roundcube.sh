@@ -1,5 +1,12 @@
 #!/bin/bash
 
+GREEN='\033[0;32m'
+RED='\033[1;31m'
+YELLOW='\033[0;33m'
+BLUE='\033[1;34m'
+NC='\033[0m' # No Color
+
+
 #### installationd de L'ORM 
 
 HOME=$(pwd)
@@ -18,9 +25,10 @@ then
 ./installation_postgres.sh
 fi
 
-apt-get install -y php5-pgsql
+apt-get install -y php5-pgsql php5-dom  
+apt-get install -y php-dom php-pgsql
 
-wget  https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.7.4/Roundcube_Mel_1.4.7.4_ORM_0.5.0.11_20190711115552.tar.gz  
+#wget  https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.7.4/Roundcube_Mel_1.4.7.4_ORM_0.5.0.11_20190711115552.tar.gz  
 mv Roundcube_Mel_1.4.7.4_ORM_0.5.0.11_20190711115552.tar.gz Roundcubemel.tar.gz
 
 cd $WEBFOLDER
@@ -29,9 +37,15 @@ tar -xvf $HOME/Roundcubemel.tar.gz
 mkdir /var/www/html/webmail/logs/
 chown -R www-data. /var/www/html/webmail
 
+mkdir /etc/LibM2/
+chown -R www-data.  /etc/LibM2/
+cp  $WEBFOLDER//webmail/vendor/messagerie-melanie2/ORM-M2/config/default/* /etc/LibM2/
 
+cp  $HOME/config.inc.roundcube /var/www/html/webmail/config/config.inc.php
+chown -R www-data. /var/www/html/webmail/config/config.inc.php 
 
-echo "commandes à passer : " 
-echo "psql -U postgres -f Roundcube_init_base.sql"
-echo "psql -d roundcube -U postgres -f roundcube.initial.sql" 
+echo -e " ${RED}commandes à passer : ${NC}" 
+echo "psql -U postgres -f /tmp/Roundcube_init_base.sql"
+echo "psql -d roundcube -U postgres -f /tmp/roundcube.initial.sql" 
+echo "et rajouter les droit 'alter role roundcube superuser;' " 
 
