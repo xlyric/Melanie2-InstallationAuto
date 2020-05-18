@@ -1,9 +1,7 @@
 #!/bin/bash
 
-###pas encore fait
-
 ###
-apt-get install -y apache2  php5-fpm php5-mcrypt php5-memcached memcached php5 apache2-mpm-event
+apt-get install -y apache2  php7.0 php7.0-fpm php7.0-mcrypt php7.0-memcached php7.0-mbstring memcached apache2-mpm-event
 
 #conf  php avec Nginx
 cp test.php /var/www/html/

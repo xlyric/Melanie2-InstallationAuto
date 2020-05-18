@@ -1,7 +1,5 @@
 #!/bin/bash
 
-###pas encore fait
-
 ###
 apt-get install -y apache2  php5-fpm php5-mcrypt php5-memcached memcached php5 apache2-mpm-event
 
