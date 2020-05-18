@@ -30,6 +30,9 @@ ${GREEN}####### installation Roundcube ######${NC}
 50 : Installation Roundcube
 ${GREEN}####### installation Saberdav ######${NC}
 60 : Installation  Saberdav
+${GREEN}####### installation zpush ######${NC}
+70 : Installation zpush apache
+
 
 100 : quit 
 "
@@ -71,8 +74,12 @@ case $menu in
                 ./installation_Roundcube.sh
         ;;
 
-	60 ) ### Installation Roudncube
+	60 ) ### Installation sabredav
                 ./installation_sabredav.sh
+        ;;
+
+        70 ) ### Installation zpush
+                ./installation_zpush.sh
         ;;
 
 

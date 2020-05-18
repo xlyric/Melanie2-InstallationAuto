@@ -4,7 +4,7 @@ WEBDIR="/var/www/html"
 
 ##vérification de la présende du dépot et installation si besoin 
 DEBPRESENT=$(cat "/etc/apt/sources.list" | grep repo.z-hub.io | wc -l ) 
-if [ $DEBPRESENT -GT 0 ]
+if [ $DEBPRESENT -eq "0" ]
 then
 ##ajout du dépot officiel deb10
 apt-get -y install wget
