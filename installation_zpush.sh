@@ -2,12 +2,18 @@
 HOME=$(pwd)
 WEBDIR="/var/www/html"
 
+##vérification de la présende du dépot et installation si besoin 
+DEBPRESENT=$(cat "/etc/apt/sources.list" | grep repo.z-hub.io | wc -l ) 
+if [ $DEBPRESENT -GT 0 ]
+then
 ##ajout du dépot officiel deb10
 apt-get -y install wget
 
 echo " deb https://repo.z-hub.io/z-push:/final/Debian_10/ / " >>/etc/apt/sources.list
 wget -qO - http://repo.z-hub.io/z-push:/final/Debian_10/Release.key | sudo apt-key add -
+fi
 
+apt-get update
 
 cd $WEBDIR
 #tar -xvf $HOME/z-push-2.2.9.tar.gz
