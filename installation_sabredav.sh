@@ -2,6 +2,8 @@
 
 #### installationd de L'ORM 
 
+PHPVERSION=$(./check_php.sh)
+
 HOME=$(pwd)
 WEBFOLDER="/var/www/html"
 ORMFOLDER="/etc/ORM-M2"

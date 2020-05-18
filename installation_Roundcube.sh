@@ -6,6 +6,8 @@ YELLOW='\033[0;33m'
 BLUE='\033[1;34m'
 NC='\033[0m' # No Color
 
+PHPVERSION=$(./check_php.sh)
+
 
 #### installationd de L'ORM 
 
@@ -25,8 +27,14 @@ then
 ./installation_postgres.sh
 fi
 
-apt-get install -y php5-pgsql php5-dom  
+if [ $PHPVERSION -eq "5" ]
+then
+apt-get install -y php5-pgsql php5-dom
+service php5-fpm reload
+else
 apt-get install -y php-dom php-pgsql
+service php7.3-fpm reload
+fi
 
 wget  https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.7.4/Roundcube_Mel_1.4.7.4_ORM_0.5.0.11_20190711115552.tar.gz  
 mv Roundcube_Mel_1.4.7.4_ORM_0.5.0.11_20190711115552.tar.gz Roundcubemel.tar.gz
