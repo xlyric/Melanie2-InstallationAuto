@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###
-apt-get install -y apache2  php5-fpm php5-mcrypt php5-memcached memcached php5 apache2-mpm-event
+apt-get install -y apache2  php5-fpm php5-mcrypt php5-memcached memcached php5 apache2-mpm-event libapache2-mod-php5
 
 #conf  php avec Nginx
 cp test.php /var/www/html/
@@ -13,3 +13,4 @@ service apache2 restart
 # conf memcache
 cp memcached.conf /etc/memcached.conf
 service memcached restart
+
