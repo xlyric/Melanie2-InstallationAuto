@@ -1,0 +1,67 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars_prompt:
+  - name: target_host
+    prompt: please enter the target host IP
+    private: no
+  tasks:
+    - add_host:
+        name: "{{ target_host }}"
+        groups: dynamically_created_hosts
+
+- hosts: dynamically_created_hosts
+  user: ansible
+
+
+  tasks:
+  - name: install php7 apache
+    apt: name={{item}} state=latest
+    with_items:
+         - apache2 
+         - php
+         - php-fpm
+         - php-memcached
+         - php-mbstring
+         - memcached
+    become: true
+
+
+  - name: copy test.php
+    copy: src=../test.php dest=/var/www/html/ seuser=www-data
+    become: true
+
+  - apache2_module:
+    state: absent
+    name: mpm_prefork
+    ignore_configcheck: True
+
+  - apache2_module:
+    state: present
+    name: {{item}}
+    with_items: 
+          - mpm_event
+          - proxy_fcgi
+    ignore_configcheck: True
+
+  - name: copy defaut.conf
+    copy: src=../000-default.conf dest=/etc/apache2/sites-available/ seuser=www-data
+    become: true
+
+  - name: restart apache2
+    service:
+       name: apache2
+       state: restarted
+    become: true
+
+
+  - name: configure memcached
+    copy: src=../memcached.conf dest=/etc/memcached.conf seuser=www-data
+    become: true
+
+  - name: restart memcached
+    service:
+       name: memcached
+       state: restarted
+    become: true
+
