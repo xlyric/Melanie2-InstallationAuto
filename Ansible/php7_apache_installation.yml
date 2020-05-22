@@ -11,7 +11,7 @@
         groups: dynamically_created_hosts
 
 - hosts: dynamically_created_hosts
-  user: ansible
+  user: cyril
 
 
   tasks:
@@ -31,18 +31,9 @@
     copy: src=../test.php dest=/var/www/html/ seuser=www-data
     become: true
 
-  - apache2_module:
-    state: absent
-    name: mpm_prefork
-    ignore_configcheck: True
-
-  - apache2_module:
-    state: present
-    name: {{item}}
-    with_items: 
-          - mpm_event
-          - proxy_fcgi
-    ignore_configcheck: True
+  - name: configuration apache
+    command: a2dismod mpm_prefork ; a2enmod mpm_event ; a2enmod proxy_fcgi
+    become: true
 
   - name: copy defaut.conf
     copy: src=../000-default.conf dest=/etc/apache2/sites-available/ seuser=www-data
