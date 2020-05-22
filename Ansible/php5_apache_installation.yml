@@ -1,0 +1,77 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars_prompt:
+  - name: target_host
+    prompt: please enter the target host IP
+    private: no
+  tasks:
+    - add_host:
+        name: "{{ target_host }}"
+        groups: dynamically_created_hosts
+
+- hosts: dynamically_created_hosts
+  user: cyril
+
+
+  tasks:
+
+  - name: install php7 apache
+    apt: name={{item}} state=latest
+    with_items:
+         - apache2 
+         - php5
+         - php5-fpm
+         - php5-memcached
+         - memcached
+         - php5-mcrypt
+         - php-mbstring
+         - memcached
+         - apache2-mpm-event
+    become: true
+
+
+  - name: copy test.php
+    copy: src=../test.php dest=/var/www/html/ seuser=www-data
+    become: true
+
+  - name: configuration apache
+    command: a2dismod mpm_prefork 
+    ignore_errors: yes
+    become: true
+  - name: configuration apache
+    command: a2enmod mpm_event 
+    ignore_errors: yes
+    become: true
+  - name: configuration apache
+    command: a2enmod proxy_fcgi
+    ignore_errors: yes
+    become: true
+
+
+
+
+  - name: copy defaut.conf
+    copy: src=../000-defaut.conf dest=/etc/apache2/sites-available/000-default.conf seuser=www-data
+    become: true
+
+  - name: restart apache2
+    service:
+       name: apache2
+       state: restarted
+    become: true
+
+
+  - name: configure memcached
+    copy: src=../memcached.conf dest=/etc/memcached.conf seuser=www-data
+    become: true
+
+  - name: restart memcached
+    service:
+       name: memcached
+       state: restarted
+    become: true
+
+  - name: correction bug install php
+    apt: name=libapache2-mod-php5 state=latest
+    become: true
