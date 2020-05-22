@@ -15,6 +15,7 @@
 
 
   tasks:
+
   - name: install php7 apache
     apt: name={{item}} state=latest
     with_items:
@@ -32,11 +33,23 @@
     become: true
 
   - name: configuration apache
-    command: a2dismod mpm_prefork ; a2enmod mpm_event ; a2enmod proxy_fcgi
+    command: a2dismod mpm_prefork 
+    ignore_errors: yes
+    become: true
+  - name: configuration apache
+    command: a2enmod mpm_event 
+    ignore_errors: yes
+    become: true
+  - name: configuration apache
+    command: a2enmod proxy_fcgi
+    ignore_errors: yes
     become: true
 
+
+
+
   - name: copy defaut.conf
-    copy: src=../000-default.conf dest=/etc/apache2/sites-available/ seuser=www-data
+    copy: src=../000-defaut.conf dest=/etc/apache2/sites-available/000-default.conf seuser=www-data
     become: true
 
   - name: restart apache2
