@@ -1,0 +1,8 @@
+Package: Sabredav-Melanie2
+Version: 1.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, nginx,  php-fpm,  php-memcached, memcached, php, php-dom,  php-pgsql, postgresql, postgresql-client, postgresql-contrib, wget
+Maintainer: Mr Cyril Poissonnier
+Description: Installation de roundcube préconfiguré pour Melanie2
