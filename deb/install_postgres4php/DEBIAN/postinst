@@ -1,0 +1,5 @@
+#!/bin/bash
+
+LOCALFILES="/usr/local/src"
+
+

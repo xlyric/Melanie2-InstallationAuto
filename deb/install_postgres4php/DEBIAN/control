@@ -1,0 +1,8 @@
+Package: Postgres4php-Melanie2
+Version: 1.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, php-dom,  php-pgsql, postgresql, postgresql-client, postgresql-contrib
+Maintainer: Mr Cyril Poissonnier
+Description: Installation de postgres et modules php Melanie2
