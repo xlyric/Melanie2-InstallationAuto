@@ -1,0 +1,48 @@
+#!/bin/bash
+
+GREEN='\033[0;32m'
+RED='\033[1;31m'
+YELLOW='\033[0;33m'
+BLUE='\033[1;34m'
+NC='\033[0m' # No Color
+
+
+LOCALFILES="/usr/local/src"
+HOME=$(pwd)
+WEBFOLDER="/var/www/html"
+ORMFOLDER="/etc/ORM-M2"
+
+
+#conf  php avec Nginx
+cp $LOCALFILES/test.php  $WEBFOLDER
+cp $LOCALFILES/nginx_default_php7 /etc/nginx/sites-enabled/default
+service nginx restart
+
+# conf memcache
+cp $LOCALFILES/memcached.conf /etc/memcached.conf
+service memcached restart
+
+echo "telechargement de roundcube pour Melanie" 
+wget  https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.7.4/Roundcube_Mel_1.4.7.4_ORM_0.5.0.11_20190711115552.tar.gz
+mv Roundcube_Mel_1.4.7.4_ORM_0.5.0.11_20190711115552.tar.gz Roundcubemel.tar.gz
+
+cd $WEBFOLDER
+tar -xvf $HOME/Roundcubemel.tar.gz
+
+mkdir $WEBFOLDER/webmail/logs/
+chown -R www-data. $WEBFOLDER/webmail
+
+mkdir /etc/LibM2/
+chown -R www-data.  /etc/LibM2/
+cp  $WEBFOLDER/webmail/vendor/messagerie-melanie2/ORM-M2/config/default/* /etc/LibM2/
+
+cp  $LOCALFILES/config.inc.roundcube $WEBFOLDER/webmail/config/config.inc.php
+chown -R www-data. $WEBFOLDER/webmail/config/config.inc.php
+
+cp $LOCALFILES/*.sql /tmp
+
+echo "creation des bases" 
+su - postgres -c "psql -U postgres -f /tmp/Roundcube_init_base.sql"
+su - postgres -c "psql -d roundcube -U postgres -f /tmp/roundcube.initial.sql"
+su - postgres -c "psql -d roundcube -U postgres  -c 'alter role roundcube superuser;' " 
+
