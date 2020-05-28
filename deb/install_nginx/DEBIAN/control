@@ -1,0 +1,8 @@
+Package: Nginx-PHP7-Melanie2
+Version: 1.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, nginx,  php-fpm,  php-memcached, memcached, php
+Maintainer: Mr Cyril Poissonnier
+Description: Installation d'Nginx préconfiguré pour Melanie2
