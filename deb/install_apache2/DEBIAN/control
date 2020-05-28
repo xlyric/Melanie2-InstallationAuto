@@ -1,0 +1,8 @@
+Package: Apache-PHP7-Melanie2
+Version: 1.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, apache2,  php, php-fpm, php-memcached, php-mbstring, memcached
+Maintainer: Mr Cyril Poissonnier
+Description: Installation d'apache2 préconfiguré pour Melanie2
