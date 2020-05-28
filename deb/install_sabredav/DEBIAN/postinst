@@ -35,10 +35,7 @@ chown www-data. /var/log/sabredav
 
 mkdir /etc/LibM2/
 chown -R www-data.  /etc/LibM2/
-cp  $WEBFOLDER/webmail/vendor/messagerie-melanie2/ORM-M2/config/default/* /etc/LibM2/
-
-cp  $LOCALFILES/config.inc.roundcube $WEBFOLDER/webmail/config/config.inc.php
-chown -R www-data. $WEBFOLDER/webmail/config/config.inc.php
+cp $WEBFOLDER/davm2/vendor/messagerie-melanie2/ORM-M2/config/default/* /etc/LibM2/
 
 cp $LOCALFILES/*.sql /tmp
 
