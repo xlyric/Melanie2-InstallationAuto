@@ -5,7 +5,7 @@ LOCALFILES="/usr/local/src"
 #conf  php avec Nginx
 cp $LOCALFILES/test.php /var/www/html/
 cp $LOCALFILES/000-default.conf /etc/apache2/sites-available/
-service nginx restart
+service apache2 restart
 
 # conf memcache
 cp $LOCALFILES/memcached.conf /etc/memcached.conf
