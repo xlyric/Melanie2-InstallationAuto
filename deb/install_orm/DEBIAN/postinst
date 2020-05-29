@@ -1,0 +1,30 @@
+#!/bin/bash
+
+GREEN='\033[0;32m'
+RED='\033[1;31m'
+YELLOW='\033[0;33m'
+BLUE='\033[1;34m'
+NC='\033[0m' # No Color
+
+
+
+LOCALFILES="/usr/local/src"
+
+echo "${YELLOW} Git doit être installé avant le package ${NC}"
+
+WEBFOLDER="/var/www/html"
+ORMFOLDER="/etc/ORM-M2"
+PHPCONFIG5="/etc/php5/fpm/php.ini"
+PHPCONFIG7="/etc/php/7.3/fpm/php.ini"
+
+echo "${GREEN}Récuperation de la dernière mise à jour de l'ORM ${NC}"
+mkdir $ORMFOLDER
+chown www-data. $ORMFOLDER
+cd $ORMFOLDER/..
+git clone https://github.com/messagerie-melanie2/ORM-M2.git
+
+mkdir /etc/LibM2/
+chown www-data. $ORMFOLDER
+cp $ORMFOLDER/config/default/* /etc/LibM2/
+
+
