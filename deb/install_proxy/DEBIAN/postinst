@@ -1,0 +1,24 @@
+  #!/bin/bash
+
+echo "Installation de la configuration pour le proxy MCE " 
+
+
+LOCALFILES="/usr/local/src"
+
+#conf  php avec Nginx
+cp $LOCALFILES/nginx_proxy /etc/nginx/sites-available/proxy-srv.mce.com.conf
+ln -s /etc/nginx/sites-available/proxy-srv.mce.com.conf /etc/nginx/sites-enabled/
+mkdir /etc/nginx/certs
+mv $LOCALFILES/ip-84-39-52-52.rev.cloudwatt.com.* /etc/nginx/certs
+service nginx restart
+
+
+
+
+# conf memcache
+cp $LOCALFILES/memcached.conf /etc/memcached.conf
+service memcached restart
+
+echo "installation faite. la configurations des ip sont à faire dans /etc/nginx/sites-available/proxy-srv.mce.com.conf"
+
+
