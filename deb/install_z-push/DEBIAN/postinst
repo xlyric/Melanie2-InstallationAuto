@@ -1,0 +1,28 @@
+  #!/bin/bash
+
+
+
+echo "Installation de la configuration pour Zpush " 
+
+
+LOCALFILES="/usr/local/src"
+
+#conf  php avec Nginx
+cd /var/www/html
+tar -xvf $LOCALFILES/zpush.tgz 
+
+
+cp $LOCALFILES/z-push.conf /etc/nginx/sites-available/z-push.conf
+ln -s /etc/nginx/sites-available/z-push.conf /etc/nginx/sites-enabled/
+mkdir /etc/nginx/certs
+mv $LOCALFILES/etc/nginx/certs/zpushapp-srv.mce.com.* /etc/nginx/certs
+service nginx restart
+
+
+# conf memcache
+cp $LOCALFILES/memcached.conf /etc/memcached.conf
+service memcached restart
+
+echo "installation faite. " 
+
+
