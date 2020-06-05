@@ -13,9 +13,12 @@ tar -xvf $LOCALFILES/zpush.tgz
 chown -r www-data. /var/www/html
 
 cp $LOCALFILES/z-push.conf /etc/nginx/sites-available/z-push.conf
+rm /etc/nginx/sites-enabled/default
+
 ln -s /etc/nginx/sites-available/z-push.conf /etc/nginx/sites-enabled/
 mkdir /etc/nginx/certs
 mv $LOCALFILES/zpushapp-srv.mce.com.* /etc/nginx/certs
+
 service nginx restart
 
 
