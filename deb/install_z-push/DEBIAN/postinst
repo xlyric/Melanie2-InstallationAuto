@@ -1,7 +1,5 @@
   #!/bin/bash
 
-
-
 echo "Installation de la configuration pour Zpush " 
 
 
@@ -23,9 +21,13 @@ service nginx restart
 
 
 # conf memcache
-cp $LOCALFILES/memcached.conf /etc/memcached.conf
+cp $LOCALFILES/memcached.conf.zpush /etc/memcached.conf
 service memcached restart
 
 echo "installation faite. " 
 
 
+#ajout des bases de données 
+
+su - postgres -c "psql -U postgres -f $LOCALFILES/zpush-account.sql"
+su - postgres -c "psql -d zpush -U postgres -f $LOCALFILES/zpush.sql"
