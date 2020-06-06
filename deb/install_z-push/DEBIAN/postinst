@@ -37,5 +37,6 @@ su - postgres -c "psql -d zpush -U postgres -f $LOCALFILES/zpush.sql"
 
 echo "192.168.1.72 ldapmaster-srv.mce.com" >> /etc/hosts
 
+service php7.3-fpm restart
 
 
