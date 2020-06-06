@@ -3,6 +3,6 @@ Version: 1.0
 Section: base
 Priority: optional
 Architecture: all
-Depends: bash, nginx,  php-fpm,  php-memcached, memcached, php, postgresql, postgresql-client, postgresql-contrib, php-dom, php-pgsql
+Depends: bash, nginx,  php-fpm,  php-memcached, memcached, php, postgresql, postgresql-client, postgresql-contrib, php-dom, php-pgsql, php-ldap
 Maintainer: Mr Cyril Poissonnier
 Description: Installation de Zpush préconfiguré pour Melanie2

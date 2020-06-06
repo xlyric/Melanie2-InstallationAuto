@@ -19,6 +19,9 @@ mv $LOCALFILES/zpushapp-srv.mce.com.* /etc/nginx/certs
 
 service nginx restart
 
+mkdir /var/log/z-push/
+chown -R www-data. /var/log/z-push/
+
 
 # conf memcache
 cp $LOCALFILES/memcached.conf.zpush /etc/memcached.conf
