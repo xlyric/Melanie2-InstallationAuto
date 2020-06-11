@@ -7,14 +7,16 @@ LOCALAPP="pegase"
 #conf  php avec Nginx
 cd /var/www/html
 tar -xvf $LOCALFILES/$LOCALAPP.tar.gz
-chown -R www-data. /var/www/html/webmail
+chown -R www-data. /var/www/html/pegase
 
 cp $LOCALFILES/$LOCALAPP.conf /etc/nginx/sites-available/$LOCALAPP.conf
 rm /etc/nginx/sites-enabled/default
 
 ln -s /etc/nginx/sites-available/$LOCALAPP.conf /etc/nginx/sites-enabled/
 mkdir /etc/nginx/certs
-mv $LOCALFILES/$LOCALAPP-srv.mce.com.* /etc/nginx/certs
+mv $LOCALFILES/$LOCALAPP*.key /etc/nginx/certs
+mv $LOCALFILES/$LOCALAPP*.pem /etc/nginx/certs
+
 
 service php7.3-fpm restart
 service nginx restart
@@ -23,5 +25,5 @@ service nginx restart
 cp $LOCALFILES/memcached.conf /etc/memcached.conf
 service memcached restart
 
-mkdir /var/log/sabredav
-chown www-data. /var/log/sabredav
+mkdir var/log/pegase/
+chown www-data. var/log/pegase/
