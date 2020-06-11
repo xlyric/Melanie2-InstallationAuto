@@ -22,3 +22,6 @@ service nginx restart
 # conf memcache
 cp $LOCALFILES/memcached.conf /etc/memcached.conf
 service memcached restart
+
+mkdir /var/log/sabredav
+chown www-data. /var/log/sabredav
