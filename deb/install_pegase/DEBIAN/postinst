@@ -25,5 +25,5 @@ service nginx restart
 cp $LOCALFILES/memcached.conf /etc/memcached.conf
 service memcached restart
 
-mkdir var/log/pegase/
-chown www-data. var/log/pegase/
+mkdir /var/log/pegase/
+chown www-data. /var/log/pegase/
