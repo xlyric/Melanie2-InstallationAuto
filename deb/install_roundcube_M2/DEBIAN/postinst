@@ -5,7 +5,7 @@ LOCALAPP="roundcube"
 
 #conf  php avec Nginx
 cd /var/www/html
-tar -xvf $LOCALFILES/$LOCALAPP.tgz
+tar -xvf $LOCALFILES/$LOCALAPP.tar.gz
 chown -r www-data. /var/www/html
 
 cp $LOCALFILES/$LOCALAPP.conf /etc/nginx/sites-available/$LOCALAPP.conf
