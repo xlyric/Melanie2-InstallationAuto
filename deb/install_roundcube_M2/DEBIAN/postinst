@@ -1,0 +1,24 @@
+#!/bin/bash
+
+LOCALFILES="/usr/local/src"
+LOCALAPP="roundcube"
+
+#conf  php avec Nginx
+cd /var/www/html
+tar -xvf $LOCALFILES/$LOCALAPP.tgz
+chown -r www-data. /var/www/html
+
+cp $LOCALFILES/$LOCALAPP.conf /etc/nginx/sites-available/$LOCALAPP.conf
+rm /etc/nginx/sites-enabled/default
+
+ln -s /etc/nginx/sites-available/$LOCALAPP.conf /etc/nginx/sites-enabled/
+mkdir /etc/nginx/certs
+mv $LOCALFILES/$LOCALAPP-srv.mce.com.* /etc/nginx/certs
+
+service php7.3-fpm restart
+service nginx restart
+
+# conf memcache
+cp $LOCALFILES/memcached.conf /etc/memcached.conf
+service memcached restart
+

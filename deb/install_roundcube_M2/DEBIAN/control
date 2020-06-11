@@ -1,0 +1,8 @@
+Package: Nginx-PHP7-Melanie2-Roundcube
+Version: 1.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, nginx,  php-fpm,  php-memcached, memcached, php , php-pgsql, php-ldap, php-mbstring, php-mcrypt, php-xml
+Maintainer: Mr Cyril Poissonnier
+Description: Installation de Roundcube préconfiguré pour Melanie2
