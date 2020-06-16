@@ -22,3 +22,5 @@ service nginx restart
 cp $LOCALFILES/memcached.conf /etc/memcached.conf
 service memcached restart
 
+su - postgres -c "psql -U postgres -f $LOCALFILES/roundcube-account.sql"
+su - postgres -c "psql -d roundcube -U postgres -f $LOCALFILES/roundcube.sql"
