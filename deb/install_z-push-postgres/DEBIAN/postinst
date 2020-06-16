@@ -1,0 +1,14 @@
+  #!/bin/bash
+
+echo "Installation de la configuration pour Zpush SQL" 
+
+
+LOCALFILES="/usr/local/src"
+
+#ajout des bases de données 
+
+su - postgres -c "psql -U postgres -f $LOCALFILES/zpush-account.sql"
+su - postgres -c "psql -d zpush -U postgres -f $LOCALFILES/zpush.sql"
+
+
+

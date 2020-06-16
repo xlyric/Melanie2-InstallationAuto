@@ -1,0 +1,8 @@
+Package: Z-push-install-Melanie-postgres
+Version: 1.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash,  postgresql, postgresql-client, postgresql-contrib
+Maintainer: Mr Cyril Poissonnier
+Description: Installation de Zpush préconfiguré pour Melanie2 partie sql

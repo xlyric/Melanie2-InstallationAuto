@@ -1,0 +1,44 @@
+  #!/bin/bash
+
+echo "Installation de la configuration pour Zpush " 
+
+
+LOCALFILES="/usr/local/src"
+
+#conf  php avec Nginx
+cd /var/www/html
+tar -xvf $LOCALFILES/zpush.tgz 
+chown -r www-data. /var/www/html
+
+cp $LOCALFILES/z-push.conf /etc/nginx/sites-available/z-push.conf
+rm /etc/nginx/sites-enabled/default
+
+ln -s /etc/nginx/sites-available/z-push.conf /etc/nginx/sites-enabled/
+mkdir /etc/nginx/certs
+mv $LOCALFILES/zpushapp-srv.mce.com.* /etc/nginx/certs
+
+service nginx restart
+
+mkdir /var/log/z-push/
+chown -R www-data. /var/log/z-push/
+
+
+# conf memcache
+cp $LOCALFILES/memcached.conf.zpush /etc/memcached.conf
+service memcached restart
+
+echo "installation faite. " 
+
+
+#ajout des bases de données 
+
+#su - postgres -c "psql -U postgres -f $LOCALFILES/zpush-account.sql"
+#su - postgres -c "psql -d zpush -U postgres -f $LOCALFILES/zpush.sql"
+
+
+echo "192.168.1.72 ldapmaster-srv.mce.com" >> /etc/hosts
+
+service php7.3-fpm restart
+
+echo "la connexion à la base de donnée est à configurer" 
+
