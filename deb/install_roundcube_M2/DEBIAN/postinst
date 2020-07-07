@@ -2,11 +2,34 @@
 
 LOCALFILES="/usr/local/src"
 LOCALAPP="roundcube"
+REPCONF="/etc/LibM2"
 
-#conf  php avec Nginx
+
+### téléchargement et installation de l'application
+
 cd /var/www/html
-tar -xvf $LOCALFILES/$LOCALAPP.tar.gz
+wget https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.8.2/Roundcube_Mel_1.4.8.2_ORM_0.6.0.12_20200703175852.tar.gz
+tar -xvf Roundcube_Mel_1.4.8.2_ORM_0.6.0.12_20200703175852.tar.gz
 chown -R www-data. /var/www/html/webmail
+
+### test de la présence des fichiers de config et copie au besoin
+
+if [ ! -d $REPCONF ]
+        do
+        mkdir $REPCONF
+        chown www-data. $REPCONF
+        cp /var/www/html/webmail/vendor/messagerie-melanie2/orm-m2/config/default/* $REPCONF
+        echo "nom du serveur de base M2 ?"
+        read "nombdd"
+        sed -e 's/sgbd.test/'$nombdd'/g' $REPCONF/sql.php
+        echo "pensez à changer le login/mdp dans $REPCONF/sql.php"
+
+        echo "nom du serveur de ldap ?"
+        read "nombdd"
+        sed -e 's/ldap.test/'$nombdd'/g' $REPCONF/sql.php
+        echo "pensez à changer le base Dn de recherche dans $REPCONF/sql.php"
+fi
+
 
 cp $LOCALFILES/$LOCALAPP.conf /etc/nginx/sites-available/$LOCALAPP.conf
 rm /etc/nginx/sites-enabled/default
