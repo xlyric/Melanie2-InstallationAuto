@@ -15,18 +15,19 @@ chown -R www-data. /var/www/html/webmail
 ### test de la présence des fichiers de config et copie au besoin
 
 if [ ! -d $REPCONF ]
-        do
+        then
         mkdir $REPCONF
         chown www-data. $REPCONF
         cp /var/www/html/webmail/vendor/messagerie-melanie2/orm-m2/config/default/* $REPCONF
         echo "nom du serveur de base M2 ?"
         read "nombdd"
-        sed -e 's/sgbd.test/'$nombdd'/g' $REPCONF/sql.php
+        sed -i 's/sgbd.test/'$nombdd'/g' $REPCONF/sql.php
         echo "pensez à changer le login/mdp dans $REPCONF/sql.php"
 
         echo "nom du serveur de ldap ?"
         read "nombdd"
-        sed -e 's/ldap.test/'$nombdd'/g' $REPCONF/sql.php
+        sed -i 's/ldap.test/'$nombdd'/g' $REPCONF/ldap.php
+	sed -i 's/dc=example,dc=com/ou=boites,ou=mce,ou=fr/g' $REPCONF/ldap.php
         echo "pensez à changer le base Dn de recherche dans $REPCONF/sql.php"
 fi
 
