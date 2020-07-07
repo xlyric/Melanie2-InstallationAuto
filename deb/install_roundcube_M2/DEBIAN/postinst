@@ -8,8 +8,8 @@ REPCONF="/etc/LibM2"
 ### téléchargement et installation de l'application
 
 cd /var/www/html
-wget https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.8.2/Roundcube_Mel_1.4.8.2_ORM_0.6.0.12_20200703175852.tar.gz
-tar -xvf Roundcube_Mel_1.4.8.2_ORM_0.6.0.12_20200703175852.tar.gz
+wget https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.8.3/Roundcube_Mel_1.4.8.3_ORM_0.6.0.12_20200707114152.tar.gz
+tar -xvf Roundcube_Mel_1.4.8.3_ORM_0.6.0.12_20200707114152.tar.gz
 chown -R www-data. /var/www/html/webmail
 
 ### test de la présence des fichiers de config et copie au besoin
@@ -30,6 +30,20 @@ if [ ! -d $REPCONF ]
 	sed -i 's/dc=example,dc=com/ou=boites,ou=mce,ou=fr/g' $REPCONF/ldap.php
         echo "pensez à changer le base Dn de recherche dans $REPCONF/sql.php"
 fi
+
+
+
+if [ ! -f /var/www/html/webmail/config/config.inc.php ]
+	then
+	cp $LOCALFILES/config.inc.php /var/www/html/webmail/config/config.inc.php
+	echo "nom du serveur imap ?"
+        read "nombdd"
+	sed -i 's/serverimap/'$nombdd'/g' /var/www/html/webmail/config/config.inc.php
+fi
+
+
+
+
 
 
 cp $LOCALFILES/$LOCALAPP.conf /etc/nginx/sites-available/$LOCALAPP.conf
