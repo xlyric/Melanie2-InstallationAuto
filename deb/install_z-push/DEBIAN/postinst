@@ -35,7 +35,9 @@ echo "installation faite. "
 su - postgres -c "psql -U postgres -f $LOCALFILES/zpush-account.sql"
 su - postgres -c "psql -d zpush -U postgres -f $LOCALFILES/zpush.sql"
 
-echo "192.168.1.72 ldapmaster-srv.mce.com" >> /etc/hosts
+echo "Ip du serveur ldap"
+Read IP 
+echo "$IP ldapmaster-srv.mce.com" >> /etc/hosts
 
 service php7.3-fpm restart
 
