@@ -32,7 +32,7 @@ then
 apt-get install -y php5-pgsql php5-dom
 service php5-fpm reload
 else
-apt-get install -y php-dom php-pgsql
+apt-get install -y php-dom php-pgsql php-xml php-soap php-ldap
 service php7.3-fpm reload
 fi
 
