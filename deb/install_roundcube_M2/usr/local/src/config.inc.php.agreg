@@ -113,7 +113,7 @@ $rcmail_config['sondage_url'] = 'https://pegase.url';
 $rcmail_config['sondage_external_url'] = 'https://pegase.internet.url';
 
 // Direct URL to create poll page
-$rcmail_config['sondage_create_sondage_url'] = 'https://pegase.url/?_p=edit&_a=new';<?php
+$rcmail_config['sondage_create_sondage_url'] = 'https://pegase.url/?_p=edit&_a=new';
 
 // Configuration de la liste des labels par défaut
 $rcmail_config['default_labels'] = [
@@ -315,7 +315,6 @@ $config['tasklist_sort_col'] = '';
 // default sorting order for tasks listing (asc or desc)
 $config['tasklist_sort_order'] = 'asc';
 
-<?php
 
 // Web Service pour la modification du mot de passe de l'utilisateur (Mon compte / Modification de mot de passe)
 $rcmail_config['ws_changepass'] = 'https://my.ws.example.com/changepasswordm2_ldapma/service.wsdl';
