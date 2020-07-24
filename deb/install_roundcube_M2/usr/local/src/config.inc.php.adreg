@@ -1,0 +1,366 @@
+<?php
+///////////// Configuration Plugin Logs
+
+
+// Nom du fichier où doivent être écrite les logs
+$rcmail_config['log_file'] = 'roundcube_mel.log';
+
+
+// Configuration du niveau de log souhaité pour le plugin mel_logs
+// Possibilité : TRACE, DEBUG, INFO, ERROR, WARN
+// Format : 
+//     - DEBUG|INFO|ERROR|WARN
+//     - TRACE|DEBUG|INFO|ERROR|WARN
+//     - INFO|ERROR|WARN
+// TRACE : Utilisé pour le developpement pour ajouter des traces dans le code
+// DEBUG : Utilisé pour le debugage, permet de lister les appels et les hooks
+// INFO : Utilisé en production, affiche les informations importantes
+// ERROR : Affiche les erreurs d'execution du code qui empeche le bon déroulement du code
+// WARN : Affiche des warning sur des erreurs qui n'empeche pas le bon déroulement du code
+$rcmail_config['mel_logs_level'] = 'TRACE|DEBUG|INFO|ERROR|WARN';
+
+
+
+
+///////////// Configuration Plugin MEL
+
+// Use infinite scroll instead of page navigation for emails
+$rcmail_config['use_infinite_scroll'] = true;
+
+// Configuration du HTTP HOST
+$rcmail_config['http_host'] = 'localhost/';
+
+// Use an IMAP Proxy or a single IMAP server
+$rcmail_config['use_imap_proxy'] = false;
+
+// Hostname of the IMAP Proxy
+$rcmail_config['imap_proxy'] = 'imap.proxy.com';
+
+// Default calendar name when created (string or null)
+// Support values from current user : %%fullname%%, %%name%%, %%email%%, %%uid%%
+$config['default_calendar_name'] = null;
+
+// Default addressbook name when created (string or null)
+// Support values from current user : %%fullname%%, %%name%%, %%email%%, %%uid%%
+$config['default_addressbook_name'] = null;
+
+// Default addressbook name when created (string or null)
+// Support values from current user : %%fullname%%, %%name%%, %%email%%, %%uid%%
+$config['default_taskslist_name'] = null;
+
+// Hide keep login button
+$rcmail_config['hide_keep_login_button'] = true;
+
+// Is this connexion come from intranet or internet
+$rcmail_config['is_internal'] = true;
+
+// Driver name configuration (mce, mtes, ...)
+$rcmail_config['mel_driver'] = 'mce';
+
+
+///////////// Configuration Plugin ACL
+
+
+// Default look of access rights table
+// In advanced mode all access rights are displayed separately
+// In simple mode access rights are grouped into four groups: read, write, delete, full
+$config['acl_advanced_mode'] = false;
+
+// LDAP addressbook that would be searched for user names autocomplete.
+// That should be an array refering to the $rcmail_config['ldap_public'] array key
+// or complete addressbook configuration array.
+$config['acl_users_source'] = '';
+
+// The LDAP attribute which will be used as ACL user identifier
+$config['acl_users_field'] = 'uid';
+
+// The LDAP search filter will be &'d with search queries
+$config['acl_users_filter'] = '';
+
+
+// LDAP addressbook that would be searched for user names autocomplete.
+// That should be an array refering to the $rcmail_config['ldap_public'] array key
+// or complete addressbook configuration array.
+$config['acl_groups_source'] = '';
+
+// The LDAP attribute which will be used as ACL user identifier
+$config['acl_groups_field'] = 'dn';
+
+// The LDAP search filter will be &'d with search queries
+$config['acl_groups_filter'] = '';
+
+// Matching mode for addressbook search (including autocompletion)
+// 0 - partial (*abc*), default
+// 1 - strict (abc)
+// 2 - prefix (abc*)
+// Note: For LDAP sources fuzzy_search must be enabled to use 'partial' or 'prefix' mode
+$config['addressbook_search_mode_groups'] = 0;
+
+// Include the following 'special' access control subjects in the ACL dialog;
+// Defaults to array('anyone', 'anonymous') (not when set to an empty array)
+// Example: array('anyone') to exclude 'anonymous'.
+// Set to an empty array to exclude all special aci subjects.
+$config['acl_specials'] = array('anyone', 'anonymous');
+
+
+
+///////////// Configuration Plugin  Sondage
+
+// URL for Pégase (sondage)
+$rcmail_config['sondage_url'] = 'https://pegase.url';
+
+// External URL for Pégase
+$rcmail_config['sondage_external_url'] = 'https://pegase.internet.url';
+
+// Direct URL to create poll page
+$rcmail_config['sondage_create_sondage_url'] = 'https://pegase.url/?_p=edit&_a=new';<?php
+
+// Configuration de la liste des labels par défaut
+$rcmail_config['default_labels'] = [
+      ['key' => '$label1',    'tag' => 'Important',       'color' => '#FF0000', 'ordinal' => ''],
+      ['key' => '$label2',    'tag' => 'Travail',         'color' => '#FF9900', 'ordinal' => ''],
+      ['key' => '$label3',    'tag' => 'Personnel',       'color' => '#009900', 'ordinal' => ''],
+      ['key' => '$label4',    'tag' => 'À faire',         'color' => '#3333FF', 'ordinal' => ''],
+      ['key' => '$label5',    'tag' => 'En attente' ,     'color' => '#993399', 'ordinal' => ''],
+];
+
+// Les labels doivent être affichés
+$rcmail_config['show_labels'] = true;
+
+
+///////////// Configuration Plugin  Calendar
+/*
+ +-------------------------------------------------------------------------+
+ | Configuration for the Calendar plugin                                   |
+ |                                                                         |
+ | Copyright (C) 2010, Lazlo Westerhof - Netherlands                       |
+ | Copyright (C) 2011-2014, Kolab Systems AG                               |
+ |                                                                         |
+ | This program is free software: you can redistribute it and/or modify    |
+ | it under the terms of the GNU Affero General Public License as          |
+ | published by the Free Software Foundation, either version 3 of the      |
+ | License, or (at your option) any later version.                         |
+ |                                                                         |
+ | This program is distributed in the hope that it will be useful,         |
+ | but WITHOUT ANY WARRANTY; without even the implied warranty of          |
+ | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the            |
+ | GNU Affero General Public License for more details.                     |
+ |                                                                         |
+ | You should have received a copy of the GNU Affero General Public License|
+ | along with this program. If not, see <http://www.gnu.org/licenses/>.    |
+ |                                                                         |
+ +-------------------------------------------------------------------------+
+ | Author: Lazlo Westerhof <hello@lazlo.me>                                |
+ |         Thomas Bruederli <bruederli@kolabsys.com>                       |
+ +-------------------------------------------------------------------------+
+*/
+
+// backend type (database, google, kolab)
+$config['calendar_driver'] = "database";
+
+// default calendar view (agendaDay, agendaWeek, month)
+$config['calendar_default_view'] = "agendaWeek";
+
+// show a birthdays calendar from the user's address book(s)
+$config['calendar_contact_birthdays'] = false;
+
+// mapping of Roundcube date formats to calendar formats (long/short/agenda)
+// should be in sync with 'date_formats' in main config
+$config['calendar_date_format_sets'] = array(
+  'yyyy-MM-dd' => array('MMM d yyyy',   'M-d',  'ddd MM-dd'),
+  'dd-MM-yyyy' => array('d MMM yyyy',   'd-M',  'ddd dd-MM'),
+  'yyyy/MM/dd' => array('MMM d yyyy',   'M/d',  'ddd MM/dd'),
+  'MM/dd/yyyy' => array('MMM d yyyy',   'M/d',  'ddd MM/dd'),
+  'dd/MM/yyyy' => array('d MMM yyyy',   'd/M',  'ddd dd/MM'),
+  'dd.MM.yyyy' => array('dd. MMM yyyy', 'd.M',  'ddd dd.MM.'),
+  'd.M.yyyy'   => array('d. MMM yyyy',  'd.M',  'ddd d.MM.'),
+);
+
+// general date format (only set if different from default date format and not user configurable)
+// $config['calendar_date_format'] = "yyyy-MM-dd";
+
+// time format  (only set if different from default date format)
+// $config['calendar_time_format'] = "HH:mm";
+
+// short date format (used for column titles)
+// $config['calendar_date_short'] = 'M-d';
+
+// long date format (used for calendar title)
+// $config['calendar_date_long'] = 'MMM d yyyy';
+
+// date format used for agenda view
+// $config['calendar_date_agenda'] = 'ddd MM-dd';
+
+// timeslots per hour (1, 2, 3, 4, 6)
+$config['calendar_timeslots'] = 2;
+
+// show this number of days in agenda view
+$config['calendar_agenda_range'] = 60;
+
+// first day of the week (0-6)
+$config['calendar_first_day'] = 1;
+
+// first hour of the calendar (0-23)
+$config['calendar_first_hour'] = 6;
+
+// working hours begin
+$config['calendar_work_start'] = 6;
+
+// working hours end
+$config['calendar_work_end'] = 18;
+
+// show line at current time of the day
+$config['calendar_time_indicator'] = true;
+
+// default alarm settings for new events.
+// this is only a preset when a new event dialog opens
+// possible values are <empty>, DISPLAY, EMAIL
+$config['calendar_default_alarm_type'] = '';
+
+// default alarm offset for new events.
+// use ical-style offset values like "-1H" (one hour before) or "+30M" (30 minutes after)
+$config['calendar_default_alarm_offset'] = '-15M';
+
+// how to colorize events:
+// 0: according to calendar color
+// 1: according to category color
+// 2: calendar for outer, category for inner color
+// 3: category for outer, calendar for inner color
+$config['calendar_event_coloring'] = 0;
+
+// event categories
+$config['calendar_categories'] = array(
+  'Personal' => 'c0c0c0',
+      'Work' => 'ff0000',
+    'Family' => '00ff00',
+   'Holiday' => 'ff6600',
+);
+
+// enable users to invite/edit attendees for shared events organized by others
+$config['calendar_allow_invite_shared'] = false;
+
+// allow users to accecpt iTip invitations who are no explicitly listed as attendee.
+// this can be the case if invitations are sent to mailing lists or alias email addresses.
+$config['calendar_allow_itip_uninvited'] = true;
+
+// controls the visibility/default of the checkbox controlling the sending of iTip invitations
+// 0 = hidden  + disabled
+// 1 = hidden  + active
+// 2 = visible + unchecked
+// 3 = visible + active
+$config['calendar_itip_send_option'] = 3;
+
+// Action taken after iTip request is handled. Possible values:
+// 0 - no action
+// 1 - move to Trash
+// 2 - delete the message
+// 3 - flag as deleted
+// folder_name - move the message to the specified folder
+$config['calendar_itip_after_action'] = 0;
+
+// enable asynchronous free-busy triggering after data changed
+$config['calendar_freebusy_trigger'] = false;
+
+// free-busy information will be displayed for user calendars if available
+// 0 - no free-busy information
+// 1 - enabled in all views
+// 2 - only in quickview
+$config['calendar_include_freebusy_data'] = 1;
+
+// SMTP server host used to send (anonymous) itip messages.
+// To override the SMTP port or connection method, provide a full URL like 'tls://somehost:587'
+// This will add a link to invitation messages to allow users from outside
+// to reply when their mail clients do not support iTip format.
+$config['calendar_itip_smtp_server'] = null;
+
+// SMTP username used to send (anonymous) itip messages
+$config['calendar_itip_smtp_user'] = 'smtpauth';
+
+// SMTP password used to send (anonymous) itip messages
+$config['calendar_itip_smtp_pass'] = '123456';
+
+// show virtual invitation calendars (Kolab driver only)
+$config['kolab_invitation_calendars'] = false;
+
+// Base URL to build fully qualified URIs to access calendars via CALDAV
+// The following replacement variables are supported:
+// %h - Current HTTP host
+// %u - Current webmail user name
+// %n - Calendar name
+// %i - Calendar UUID
+// $config['calendar_caldav_url'] = 'http://%h/iRony/calendars/%u/%i';
+
+// Driver to provide a resource directory ('ldap' is the only implementation yet).
+// Leave empty or commented to disable resources support.
+// $config['calendar_resources_driver'] = 'ldap';
+
+// LDAP directory configuration to find avilable resources for events
+// $config['calendar_resources_directory'] = array(/* ldap_public-like address book configuration */);
+
+// Enables displaying of free-busy URL with token-based authentication
+// Set it to the prefix URL, e.g. 'https://hostname/freebusy' or just '/freebusy'.
+// See freebusy_session_auth in configuration of kolab_auth plugin.
+$config['calendar_freebusy_session_auth_url'] = null;
+
+
+///////////// Configuration Plugin Tasklist
+
+
+// backend type (database, kolab)
+$config['tasklist_driver'] = 'kolab';
+
+// default sorting order of tasks listing (auto, datetime, startdatetime, flagged, complete, changed)
+$config['tasklist_sort_col'] = '';
+
+// default sorting order for tasks listing (asc or desc)
+$config['tasklist_sort_order'] = 'asc';
+
+<?php
+
+// Web Service pour la modification du mot de passe de l'utilisateur (Mon compte / Modification de mot de passe)
+$rcmail_config['ws_changepass'] = 'https://my.ws.example.com/changepasswordm2_ldapma/service.wsdl';
+
+// Web Service z-push pour accéder aux statistiques Mobile (Mes statistiques / Mobiles)
+$rcmail_config['ws_zp'] = 'https://my.ws.example.com/zp/webservice.php';
+
+// Configuration de l'administrateur LDAP pour l'édition de listes (Mon compte / Gestion des listes)
+$rcmail_config['liste_admin'] = "uid=listadm,ou=admin,ou=ressources,dc=example,dc=com";
+// Configuration du mot de passe de l'administrateur LDAP pour l'édition de listes
+$rcmail_config['liste_pwd'] = "";
+
+// Activer le menu Mon compte
+$rcmail_config['enable_moncompte']          = true;
+// Activer le menu Mon compte / Gestion des CGUs
+$rcmail_config['enable_moncompte_cgu']      = true;
+// Activer le menu Mon compte / Gestionnaire d'absence
+$rcmail_config['enable_moncompte_abs']      = true;
+// Activer le menu Mon compte / Gestion des listes
+$rcmail_config['enable_moncompte_lists']    = true;
+// Activer le menu Mon compte / Informations personnelles
+$rcmail_config['enable_moncompte_infos']    = true;
+// Activer le menu Mon compte / Modification du mot de passe
+$rcmail_config['enable_moncompte_mdp']      = true;
+// Activer le menu Mon compte / Afficher la photo
+$rcmail_config['enable_moncompte_photo']    = true;
+
+// Activer le menu Mes ressources
+$rcmail_config['enable_mesressources']              = true;
+// Activer le menu Mes ressources / Boites aux lettres
+$rcmail_config['enable_mesressources_mail']         = true;
+// Activer la restaurationdes mails
+$rcmail_config['enable_mesressources_mail_restore'] = true;
+// Activer le menu Mes ressources / Agendas
+$rcmail_config['enable_mesressources_cal']          = true;
+// Activer la restauration des agendas
+$rcmail_config['enable_mesressources_cal_restore']  = true;
+// Activer le menu Mes ressources / Contacts
+$rcmail_config['enable_mesressources_addr']         = true;
+// Activer la restaurationdes contacts
+$rcmail_config['enable_mesressources_addr_restore'] = true;
+// Activer le menu Mes ressources / Tâches
+$rcmail_config['enable_mesressources_task']         = true;
+
+// Activer le menu Mes statistiques
+$rcmail_config['enable_messtatistiques']        = true;
+// Activer le menu Mes statistiques / Mobiles
+$rcmail_config['enable_messtatistiques_mobile'] = true;

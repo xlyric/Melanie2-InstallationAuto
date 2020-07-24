@@ -3,13 +3,14 @@
 LOCALFILES="/usr/local/src"
 LOCALAPP="roundcube"
 REPCONF="/etc/LibM2"
-
+SOURCE="https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.8.4/Roundcube_Mel_1.4.8.4_ORM_0.6.0.13_20200717153552.tar.gz"
+WEB="/var/www/html/webmail"
 
 ### téléchargement et installation de l'application
 
 cd /var/www/html
-wget https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.8.3/Roundcube_Mel_1.4.8.3_ORM_0.6.0.12_20200707114152.tar.gz
-tar -xvf Roundcube_Mel_1.4.8.3_ORM_0.6.0.12_20200707114152.tar.gz
+wget -O webmail.tgz $SOURCE
+tar -xvf webmail.tgz
 chown -R www-data. /var/www/html/webmail
 
 ### test de la présence des fichiers de config et copie au besoin
@@ -18,7 +19,7 @@ if [ ! -d $REPCONF ]
         then
         mkdir $REPCONF
         chown www-data. $REPCONF
-        cp /var/www/html/webmail/vendor/messagerie-melanie2/orm-m2/config/default/* $REPCONF
+        cp $WEB/vendor/messagerie-melanie2/orm-m2/config/default/* $REPCONF
         echo "nom du serveur de base M2 ?"
         read "nombdd"
         sed -i 's/sgbd.test/'$nombdd'/g' $REPCONF/sql.php
@@ -33,19 +34,31 @@ fi
 
 
 
-if [ ! -f /var/www/html/webmail/config/config.inc.php ]
+if [ ! -f $WEB/config/config.inc.php ]
 	then
-	cp $LOCALFILES/config.inc.php /var/www/html/webmail/config/config.inc.php
+	cp $LOCALFILES/config.inc.php $WEB/config/config.inc.php
 	echo "nom du serveur imap ?"
         read "nombdd"
-	sed -i 's/serverimap/'$nombdd'/g' /var/www/html/webmail/config/config.inc.php
+	sed -i 's/serverimap/'$nombdd'/g' $WEB/config/config.inc.php
 fi
 
 
+if [ ! -f $REPCONF/config.inc.php ]
+        then
+        cp $LOCALFILES/config.inc.php.agreg $REPCONF/config.inc.php
+	cd $WEB/plugins
+ 	cp $LOCALFILES/config.inc.php.ori ./mel/config.inc.php  ./mel_logs/config.inc.php /mel_acl/config.inc.php ./mel_sondage/config.inc.php ./mel_labels_sync/config.inc.php ./calendar/config.inc.php ./tasklist/config.inc.php  ./mel_moncompte/config.inc.php
+echo "copie des fichiers de configuration par defaut faite" 
+
+fi
+
+echo "correction template mel_larry"
+cp $LOCALFILES/resources_elements.html  $WEB/plugins/mel/skins/mel_larry/templates/resources_elements.html
 
 
 
 
+echo "configuration nginx" 
 cp $LOCALFILES/$LOCALAPP.conf /etc/nginx/sites-available/$LOCALAPP.conf
 rm /etc/nginx/sites-enabled/default
 
