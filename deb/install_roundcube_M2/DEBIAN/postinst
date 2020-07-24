@@ -46,8 +46,13 @@ fi
 if [ ! -f $REPCONF/config.inc.php ]
         then
         cp $LOCALFILES/config.inc.php.agreg $REPCONF/config.inc.php
-	cd $WEB/plugins
- 	cp $LOCALFILES/config.inc.php.ori ./mel/config.inc.php  ./mel_logs/config.inc.php /mel_acl/config.inc.php ./mel_sondage/config.inc.php ./mel_labels_sync/config.inc.php ./calendar/config.inc.php ./tasklist/config.inc.php  ./mel_moncompte/config.inc.php
+	cd $WEB/plugins/mel
+ 	cp $LOCALFILES/config.inc.php.ori config.inc.php
+	cat $LOCALFILES/copylist | while read line
+		do
+		cp config.inc.php $line
+		done
+
 echo "copie des fichiers de configuration par defaut faite" 
 
 fi
