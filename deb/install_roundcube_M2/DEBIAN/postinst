@@ -59,8 +59,8 @@ fi
 
 echo "correction template mel_larry"
 cp $LOCALFILES/resources_elements.html  $WEB/plugins/mel_moncompte/skins/mel_larry/templates/resources_elements.html
-
-
+cp $LOCALFILES/ldap.php   $REPCONF/ldap.php
+chown -R www-data. $REPCONF 
 
 
 echo "configuration nginx" 
