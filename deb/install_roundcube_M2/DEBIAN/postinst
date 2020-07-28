@@ -58,7 +58,7 @@ echo "copie des fichiers de configuration par defaut faite"
 fi
 
 echo "correction template mel_larry"
-cp $LOCALFILES/resources_elements.html  $WEB/plugins/mel/skins/mel_larry/templates/resources_elements.html
+cp $LOCALFILES/resources_elements.html  $WEB/plugins/mel_moncompte/skins/mel_larry/templates/resources_elements.html
 
 
 
