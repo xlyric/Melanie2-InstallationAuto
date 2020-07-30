@@ -20,16 +20,16 @@ if [ ! -d $REPCONF ]
         mkdir $REPCONF
         chown www-data. $REPCONF
         cp $WEB/vendor/messagerie-melanie2/orm-m2/config/default/* $REPCONF
-        echo "nom du serveur de base M2 ?"
-        read "nombdd"
-        sed -i 's/sgbd.test/'$nombdd'/g' $REPCONF/sql.php
-        echo "pensez à changer le login/mdp dans $REPCONF/sql.php"
+#        echo "nom du serveur de base M2 ?"
+#        read "nombdd"
+#        sed -i 's/sgbd.test/'$nombdd'/g' $REPCONF/sql.php
+#        echo "pensez à changer le login/mdp dans $REPCONF/sql.php"
 
-        echo "nom du serveur de ldap ?"
-        read "nombdd"
-        sed -i 's/ldap.test/'$nombdd'/g' $REPCONF/ldap.php
-	sed -i 's/dc=example,dc=com/ou=boites,ou=mce,ou=fr/g' $REPCONF/ldap.php
-        echo "pensez à changer le base Dn de recherche dans $REPCONF/sql.php"
+#        echo "nom du serveur de ldap ?"
+#        read "nombdd"
+#        sed -i 's/ldap.test/'$nombdd'/g' $REPCONF/ldap.php
+#	sed -i 's/dc=example,dc=com/ou=boites,ou=mce,ou=fr/g' $REPCONF/ldap.php
+#        echo "pensez à changer le base Dn de recherche dans $REPCONF/sql.php"
 fi
 
 
@@ -37,9 +37,9 @@ fi
 if [ ! -f $WEB/config/config.inc.php ]
 	then
 	cp $LOCALFILES/config.inc.php $WEB/config/config.inc.php
-	echo "nom du serveur imap ?"
-        read "nombdd"
-	sed -i 's/serverimap/'$nombdd'/g' $WEB/config/config.inc.php
+#	echo "nom du serveur imap ?"
+#        read "nombdd"
+#	sed -i 's/serverimap/'$nombdd'/g' $WEB/config/config.inc.php
 fi
 
 
