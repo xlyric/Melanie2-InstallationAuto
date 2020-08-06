@@ -21,7 +21,7 @@ la source est à récuperer sur la machine Debian 10
 ```bash
 wget https://github.com/xlyric/Melanie2-InstallationAuto/archive/master.zip
 unzip master.zip
-cd Melanie2-InstallationAuto/deb/
+cd Melanie2-InstallationAuto-master/deb/
 ./generation_deb.sh
 ```
 
