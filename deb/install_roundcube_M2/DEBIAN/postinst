@@ -7,6 +7,7 @@ SOURCE="https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1
 WEB="/var/www/html/webmail"
 
 ### téléchargement et installation de l'application
+cp  $LOCALFILES/roundcube_configuration.sh  $REPCONF
 
 cd /var/www/html
 wget -O webmail.tgz $SOURCE
@@ -32,6 +33,8 @@ if [ ! -d $REPCONF ]
 #        echo "pensez à changer le base Dn de recherche dans $REPCONF/sql.php"
 fi
 
+### téléchargement et installation de l'application
+cp  $LOCALFILES/roundcube_configuration.sh  $REPCONF
 
 
 if [ ! -f $WEB/config/config.inc.php ]

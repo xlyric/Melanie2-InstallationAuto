@@ -1,9 +1,10 @@
 #!/bin/bash
 
-LOCALFILES="."
-REPCONF="."
-WEB="."
 
+LOCALFILES="/usr/local/src"
+LOCALAPP="roundcube"
+REPCONF="/etc/LibM2"
+WEB="/var/www/html/webmail"
 
 
 
