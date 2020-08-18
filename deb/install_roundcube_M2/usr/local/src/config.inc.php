@@ -122,7 +122,7 @@ $config['des_key'] = 'mceweb2-.54IttcRUHbte$Uot';
 // List of active plugins (in plugins/ directory)
 //$config['plugins'] =  array('mce', 'mce_logs', 'mce_contacts', 'mce_larry', 'mce_applications', 'mce_courrielleur', 'mce_moncompte', 'mce_acl', 'mce_sondage', 'mce_labels_sync', 'calendar', 'tasklist');
 //$config['plugins'] =  array('mel','mel_logs','mel_ldap_auth','mel_larry','annuaire','mel_contacts','calendar', 'libcalendaring','tasklist' );
-$config['plugins'] =  array('mel_logs','mel', 'mel_contacts', 'mel_larry', 'mel_courrielleur', 'mel_acl', 'mel_sondage', 'mel_labels_sync','jqueryui', 'libcalendaring', 'calendar','tasklist','mel_moncompte','right_panel','mel_portail','mel_junk');
+$config['plugins'] =  array('mel_logs','mel', 'mel_contacts', 'mel_larry', 'mel_courrielleur', 'mel_acl', 'mel_sondage', 'mel_labels_sync','jqueryui', 'libcalendaring', 'calendar','tasklist','mel_moncompte','right_panel','mel_portail','mel_junk','managesieve','attachment_reminder', 'enigma', 'newmail_notifier');
 
 
 // Add it to the plugins list in config.inc.php to enable the user option
