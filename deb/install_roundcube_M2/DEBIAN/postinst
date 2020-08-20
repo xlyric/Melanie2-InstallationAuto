@@ -81,10 +81,17 @@ service nginx restart
 cp $LOCALFILES/memcached.conf.roundcube /etc/memcached.conf
 service memcached restart
 
+# installation bases 
+
+
+if [ ! -f $LOCALFILES/SQL.ok ]
 su - postgres -c "psql -U postgres -f $LOCALFILES/roundcube-account.sql"
 su - postgres -c "psql -d roundcube -U postgres -f $LOCALFILES/roundcube.sql"
-
 service php7.3-fpm restart
+touch $LOCALFILES/SQL.ok
+fi
+
+
 
 mkdir /var/log/roundcube/
 chown www-data. /var/log/roundcube/
