@@ -8,9 +8,9 @@ if [ -f /usr/share/debconf/confmodule ]; then
 fi
 
 
-NGINXCONF="/etc/nginx/sites-available/proxy-mail.conf"
-NGINXPROD="/etc/nginx/sites-enabled/proxy-mail.conf"
-
+NGINXCONF="/etc/nginx/sites-available"
+NGINXPROD="/etc/nginx/sites-enabled"
+NGINXNAME="proxy-mail.conf"
 
 is_initial_configuration() {
 # Check if this is the initial configuration and not an upgrade of an
@@ -44,8 +44,8 @@ is_initial_configuration() {
 
 	IMAPNAME=""
 	SMTPNAME=""
-	cat  usr/share/proxy-mail/scripts/header.conf >  $NGINXCONF
-	sed -i 's/%%NAMESERVER%%/'$NAMESERVER'/g' $NGINXCONF
+	cat  usr/share/proxy-mail/scripts/header.conf >  $NGINXCONF/$NGINXNAME
+	sed -i 's/%%NAMESERVER%%/'$NAMESERVER'/g' $NGINXCONF/$NGINXNAME
 
 
 		#configuration imap
@@ -54,8 +54,8 @@ is_initial_configuration() {
             IMAPNAME=$RET
 
 	# copie du template imap
-	cat usr/share/proxy-mail/scripts/imap.conf >>  $NGINXCONF
-	sed -i 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF 
+	cat usr/share/proxy-mail/scripts/imap.conf >>  $NGINXCONF/$NGINXNAME
+	sed -i 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF /$NGINXNAME
         fi
 
 		#configuration smtp
@@ -64,15 +64,16 @@ is_initial_configuration() {
             IMAPNAME=$RET
 
         # copie du template imap
-        cat usr/share/proxy-mail/scripts/imap.conf >>  $NGINXCONF
-        sed -i 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF
+        cat usr/share/proxy-mail/scripts/imap.conf >>  $NGINXCONF/$NGINXNAME
+        sed -i 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF/$NGINXNAME
         fi
 
 
-	cat  usr/share/proxy-mail/scripts/footer.conf >>  $NGINXCONF
+	cat  usr/share/proxy-mail/scripts/footer.conf >>  $NGINXCONF/$NGINXNAME
     fi
 #fi
 
-ln -s $NGINXCONF $NGINXPROD
+ln -s $NGINXCONF/$NGINXNAME $NGINXPROD/$NGINXNAME
+rm $NGINXPROD/default
 
 exit 0
