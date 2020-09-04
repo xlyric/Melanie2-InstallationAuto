@@ -12,6 +12,8 @@ db_input critical  proxy-mail/imapchoice || true
 db_get proxy-mail/imapchoice
 CONFTYPE=$RET
 
+db_input critical  proxy-mail/servername || true
+
 if [[ "$CONFTYPE" == *"imap"* ]] ; then
     db_input critical proxy-mail/imapname || true
 fi 
