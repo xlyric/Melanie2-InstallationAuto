@@ -16,5 +16,3 @@ Type: string
 Default: 192.168.0.11
 Description: uname or IP of the imap server
  dns name or ip of the imap server
-
-
