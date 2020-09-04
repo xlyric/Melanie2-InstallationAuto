@@ -82,5 +82,7 @@ ln -s $NGINXCONF/$NGINXNAME $NGINXPROD/$NGINXNAME
 #rm /default
 cp $SCRIPTS/demo.*  /etc/nginx/certs/
 
+service nginx restart
+
 exit 0
 
