@@ -8,7 +8,7 @@ Description: Choose proxy to install
 Template: proxy-mail/servername
 Type: string
 Description: name or IP of the proxy server
- dns name or ip of the proxy server
+ dns name or ip of the proxy server, for test type : demo
 
 Template: proxy-mail/imapname
 Type: string

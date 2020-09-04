@@ -79,7 +79,7 @@ echo "include "$NGINXPROD"/*.conf;" >> /etc/nginx/nginx.conf
 #fi
 
 ln -s $NGINXCONF/$NGINXNAME $NGINXPROD/$NGINXNAME
-rm $NGINXPROD/default
+#rm /default
 cp $SCRIPTS/demo.*  /etc/nginx/certs/
 
 exit 0
