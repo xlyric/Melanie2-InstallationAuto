@@ -55,7 +55,7 @@ is_initial_configuration() {
 
 	# copie du template imap
 	cat usr/share/proxy-mail/scripts/imap.conf >>  $NGINXCONF/$NGINXNAME
-	sed -i 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF /$NGINXNAME
+	sed -i 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF/$NGINXNAME
         fi
 
 		#configuration smtp
