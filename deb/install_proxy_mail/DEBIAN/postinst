@@ -45,7 +45,7 @@ is_initial_configuration() {
 	IMAPNAME=""
 	SMTPNAME=""
 	cat  usr/share/proxy-mail/scripts/header.conf >  $NGINXCONF
-	sed -e 's/%%NAMESERVER%%/'$NAMESERVER'/g' $NGINXCONF
+	sed -i 's/%%NAMESERVER%%/'$NAMESERVER'/g' $NGINXCONF
 
 
 		#configuration imap
@@ -55,7 +55,7 @@ is_initial_configuration() {
 
 	# copie du template imap
 	cat usr/share/proxy-mail/scripts/imap.conf >>  $NGINXCONF
-	sed -e 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF 
+	sed -i 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF 
         fi
 
 		#configuration smtp
@@ -65,7 +65,7 @@ is_initial_configuration() {
 
         # copie du template imap
         cat usr/share/proxy-mail/scripts/imap.conf >>  $NGINXCONF
-        sed -e 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF
+        sed -i 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF
         fi
 
 
