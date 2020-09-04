@@ -1,0 +1,25 @@
+#!/bin/bash
+set -e
+
+if [ -f /usr/share/debconf/confmodule ]; then
+  . /usr/share/debconf/confmodule
+fi
+
+
+# Ask questions
+
+db_input critical  proxy-mail/imapchoice || true
+db_get proxy-mail/imapchoice
+CONFTYPE=$RET
+
+if [[ "$CONFTYPE" == *"imap"* ]] ; then
+    db_input critical proxy-mail/imapname || true
+fi 
+
+if [[ "$CONFTYPE" == *"smtp"* ]] ; then
+    db_input critical proxy-mail/smtpname || true
+fi
+
+
+# Show interface
+db_go || true

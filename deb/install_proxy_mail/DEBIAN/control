@@ -1,0 +1,9 @@
+Package: proxy-mail
+Version: 1.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, nginx,  php-fpm,  php-memcached, memcached, php
+Maintainer: Mr Cyril Poissonnier
+Description: Installation du proxy imap pop Nginx préconfiguré.
+

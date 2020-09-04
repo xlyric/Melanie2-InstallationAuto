@@ -1,0 +1,20 @@
+Template: proxy-mail/imapchoice
+Type: multiselect
+Choices: imap, smtp
+Default: imap
+Description: Choose proxy to install
+ Choose one or more proxy(s)
+
+Template: proxy-mail/imapname
+Type: string
+Default: 192.168.0.10
+Description: uname or IP of the imap server
+ dns name or ip of the imap server
+
+Template: proxy-mail/smtpname
+Type: string
+Default: 192.168.0.11
+Description: uname or IP of the imap server
+ dns name or ip of the imap server
+
+
