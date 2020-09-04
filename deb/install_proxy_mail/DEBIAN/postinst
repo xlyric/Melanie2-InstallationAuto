@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -x 
 set -e 
 
 if [ -f /usr/share/debconf/confmodule ]; then
@@ -8,7 +9,7 @@ fi
 
 
 NGINXCONF="/etc/nginx/sites-available/proxy-mail.conf"
-NGINXPROD="/etc/nginx/sites-enabled//proxy-mail.conf"
+NGINXPROD="/etc/nginx/sites-enabled/proxy-mail.conf"
 
 
 is_initial_configuration() {
@@ -30,7 +31,7 @@ is_initial_configuration() {
 
 
 #Install
-if is_initial_configuration "$@"; then
+#if is_initial_configuration "$@"; then
 
     if [ "$DEBIAN_FRONTEND" != "noninteractive" ] ; then
         # Fetching configuration from debconf
@@ -70,8 +71,8 @@ if is_initial_configuration "$@"; then
 
 	cat  usr/share/proxy-mail/scripts/footer.conf >>  $NGINXCONF
     fi
-fi
+#fi
 
-ln -s $NGINXPROD $NGINXCONF
+ln -s $NGINXCONF $NGINXPROD
 
 exit 0
