@@ -68,8 +68,8 @@ echo "include "$NGINXPROD"/*.conf;" >> /etc/nginx/nginx.conf
             db_get proxy-mail/smtpname
             IMAPNAME=$RET
 
-        # copie du template imap
-        cat usr/share/proxy-mail/scripts/imap.conf >>  $NGINXCONF/$NGINXNAME
+        # copie du template smtp
+        cat usr/share/proxy-mail/scripts/smtp.conf >>  $NGINXCONF/$NGINXNAME
         sed -i 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF/$NGINXNAME
         fi
 
