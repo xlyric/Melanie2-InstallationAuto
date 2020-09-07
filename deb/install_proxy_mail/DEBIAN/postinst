@@ -3,6 +3,16 @@
 set -x 
 set -e 
 
+#   Variables 
+#   %%NAMESERVER%%   
+#   %%IMAPSERVER%%
+#   %%LDAPSERVER%%
+#   %%LDAPSERVERTECH%%
+#   %%LDAPSERVERBASEDN%%
+# 	%%LDAPPASS%%
+#   %%SEARCH_DN%%
+
+
 if [ -f /usr/share/debconf/confmodule ]; then
   . /usr/share/debconf/confmodule
 fi
@@ -78,11 +88,16 @@ echo "include "$NGINXPROD"/*.conf;" >> /etc/nginx/nginx.conf
     fi
 #fi
 
+cp /usr/share/proxy-mail/www/* /var/www/html
+chown -R www-data. /var/www/html
+
 ln -s $NGINXCONF/$NGINXNAME $NGINXPROD/$NGINXNAME
 #rm /default
 cp $SCRIPTS/demo.*  /etc/nginx/certs/
 
 sudo service nginx restart
+
+echo "la configuration par défaut du LDAP a été appliqué sans le mot de passe technique, il est possile de la modifier dans /var/www/html/ministere_config.ini "
 
 exit 0
 

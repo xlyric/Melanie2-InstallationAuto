@@ -1,0 +1,7 @@
+Gestion de l'authentification imap/smtp dans le reverseproxy nginx
+------------------------------------------------------------------
+
+Les informations de connexion au LDAP et la liste des serveurs SMTP sont à renseigner dans
+le fichier : ministere_config.ini
+
+le serveur necessite un support PHP pour fonctionner
