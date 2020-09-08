@@ -3,7 +3,7 @@ Version: 1.02
 Section: base
 Priority: optional
 Architecture: all
-Depends: bash, nginx,  php-fpm,  php-memcached, memcached, php
+Depends: bash, nginx,  php-fpm,  php-memcached, memcached, php, php-ldap
 Maintainer: Mr Cyril Poissonnier
 Description: Installation du proxy imap pop Nginx préconfiguré.
 
