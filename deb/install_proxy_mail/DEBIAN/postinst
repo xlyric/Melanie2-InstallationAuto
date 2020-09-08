@@ -81,6 +81,10 @@ echo "include "$NGINXPROD"/*.conf;" >> /etc/nginx/nginx.conf
         # copie du template smtp
         cat usr/share/proxy-mail/scripts/smtp.conf >>  $NGINXCONF/$NGINXNAME
         sed -i 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF/$NGINXNAME
+	
+	# desactivation de postfix si présent.
+	sudo systemctl disable postfix 2>&1 >/dev/null
+	sudo service postfix stop 2>&1 >/dev/null
         fi
 
 
@@ -95,6 +99,7 @@ ln -s $NGINXCONF/$NGINXNAME $NGINXPROD/$NGINXNAME
 #rm /default
 cp $SCRIPTS/demo.*  /etc/nginx/certs/
 cp $SCRIPTS/default /etc/nginx/sites-available/
+
 
 sudo service nginx restart
 sudo service php7.3-fpm restart
