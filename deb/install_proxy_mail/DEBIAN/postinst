@@ -83,8 +83,8 @@ echo "include "$NGINXPROD"/*.conf;" >> /etc/nginx/nginx.conf
         sed -i 's/%%IMAPSERVER%%/'$IMAPNAME'/g' $NGINXCONF/$NGINXNAME
 	
 	# desactivation de postfix si présent.
-	sudo systemctl disable postfix 2>&1 >/dev/null
-	sudo service postfix stop 2>&1 >/dev/null
+	sudo systemctl disable postfix ||  true
+	sudo service postfix stop ||  true
         fi
 
 
