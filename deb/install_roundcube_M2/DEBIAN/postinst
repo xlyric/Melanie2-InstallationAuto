@@ -6,8 +6,6 @@ REPCONF="/etc/LibM2"
 SOURCE="https://github.com/messagerie-melanie2/Roundcube-Mel/releases/download/1.4.8.5/Roundcube_Mel_1.4.8.5_ORM_0.6.0.15_20200813110152.tar.gz"
 WEB="/var/www/html/webmail"
 
-### téléchargement et installation de l'application
-cp  $LOCALFILES/roundcube_configuration.sh  $REPCONF
 
 cd /var/www/html
 wget -O webmail.tgz $SOURCE
